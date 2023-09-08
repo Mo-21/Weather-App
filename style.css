@@ -1,0 +1,49 @@
+header {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 2rem;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+
+.input-group {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+label {
+  padding: 7px;
+  color: white;
+  background-color: black;
+}
+
+.card {
+  margin-top: 20px;
+}
+
+.card-body {
+  min-width: 200px;
+}
+
+span {
+  font-size: 2rem;
+}
+
+.current-weather {
+  font-size: 5rem;
+}
+
+.card-title {
+  font-size: 1.6rem;
+}
+
+.card-text-group {
+  font-size: 4rem;
+}
