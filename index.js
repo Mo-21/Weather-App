@@ -2,8 +2,13 @@ const search = document.querySelector("button");
 const input = document.querySelector("input");
 const alertMsg = document.querySelector(".alert");
 const col = document.querySelector(".col");
+const body = document.querySelector("body");
+const div = document.createElement("div");
+const cardGroup = document.createElement("div");
 
 search.addEventListener("click", () => {
+  div.innerHTML = "";
+  cardGroup.innerHTML = "";
   checkValidity(input.value);
 });
 
@@ -58,6 +63,7 @@ async function getWetherByLocation(cityURL) {
     const currentWeather = weatherData.current.temp_c;
     const currentHumidity = weatherData.current.humidity;
     const currentWind = weatherData.current.wind_kph;
+    getTheGIFLink(currentCloud);
     injectingResults(
       currentCloud,
       currentWeather,
@@ -75,9 +81,9 @@ function injectingResults(
   currentHumidity,
   currentWind
 ) {
-  const div = document.createElement("div");
   div.className = "card mb-3";
   div.id = "current-card";
+
   div.innerHTML = `<div class="card-body">
               <h5 class="card-title">
                 <span class="current-weather">${currentWeather}</span>C
@@ -95,9 +101,9 @@ function injectingForecastingResults(
   afterTomorrowWeather,
   afterAfterTomorrowWeather
 ) {
-  const cardGroup = document.createElement("div");
   cardGroup.className = "card-group";
   cardGroup.id = "card-group";
+
   cardGroup.innerHTML = `<div class="card cards">
       <div class="card-body">
         <h5 class="card-title">Tomorrow</h5>
@@ -117,4 +123,29 @@ function injectingForecastingResults(
       </div>
     </div>`;
   col.appendChild(cardGroup);
+}
+
+function getTheGIFLink(currentCloud) {
+  if (currentCloud) {
+    let giphyUrl =
+      "https://api.giphy.com/v1/gifs/translate?api_key=WOLux0PXfrRXuVeBhDcVAg4EblSYORyG";
+    const contentSearched = giphyUrl + `&s=${currentCloud}` + " " + "weather";
+    console.log("fetched");
+    fetchTheGIF(contentSearched);
+  }
+}
+
+async function fetchTheGIF(url) {
+  try {
+    const response = await fetch(url, { mode: "cors" });
+    const gifData = await response.json();
+    const gifPath = gifData.data.images.original.url;
+    console.log(gifPath);
+    body.style.setProperty("background-image", "!important");
+    body.style.backgroundImage = `url("${gifPath}")`;
+    body.style.backgroundSize = "cover";
+    body.style.backgroundRepeat = "no-repeat";
+  } catch (error) {
+    console.error("Hello:", error);
+  }
 }

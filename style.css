@@ -1,8 +1,20 @@
-header {
+.heading {
   display: flex;
   justify-content: center;
+}
+
+.head {
   margin-top: 20px;
-  font-size: 2rem;
+  font-size: 3rem;
+  color: black;
+  animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px yellowgreen, 0 0 20px yellowgreen,
+      0 0 30px yellowgreen; /* Initial glow effect */
+  }
 }
 
 .container {
@@ -16,6 +28,17 @@ header {
   display: flex;
   justify-content: center;
   gap: 4px;
+}
+
+input {
+  background-color: white;
+  padding: 7px;
+  border-color: black;
+}
+
+button {
+  background-color: white;
+  border-color: black;
 }
 
 label {
