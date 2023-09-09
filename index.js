@@ -26,7 +26,7 @@ function checkValidity(inputValue) {
 
 function gettingLocationInput(city) {
   let url =
-    "http://api.weatherapi.com/v1/forecast.json?key=6a7613743d4f4091bba93427230809";
+    "https://api.weatherapi.com/v1/forecast.json?key=6a7613743d4f4091bba93427230809";
   const formatCityInput = `&q=${city}`;
   const searchedCity = url + formatCityInput;
   getWetherByLocation(searchedCity);
